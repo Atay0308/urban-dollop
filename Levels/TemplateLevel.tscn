@@ -1,0 +1,126 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Audio/Cyber_Space_Hunters.ogg" type="AudioStream" id=1]
+[ext_resource path="res://Levels/Camera2D.gd" type="Script" id=2]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=3]
+[ext_resource path="res://Environments/Floor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Coins/Coin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Audio/win.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Backgrounds/Background.png" type="Texture" id=8]
+[ext_resource path="res://Powers/Magnet.tscn" type="PackedScene" id=9]
+[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=10]
+
+[node name="TemplateLevel" type="Node2D" groups=[
+"GameState",
+]]
+position = Vector2( 0, 16 )
+script = ExtResource( 3 )
+
+[node name="Floor" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 100 )
+collision_layer = 4
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, 0 )
+collision_mask = 7
+camera_path = NodePath("../ParallaxBackground/Camera2D")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="ParallaxBackground"]
+current = true
+limit_top = -1000000000
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 20.0
+drag_margin_bottom = 0.1
+script = ExtResource( 2 )
+bg_path = NodePath("../ParallaxLayer")
+player_path = NodePath("../../Player")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -392, -824 )
+motion_scale = Vector2( 0.01, 0.01 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+margin_left = -20.0
+margin_right = 816.0
+margin_bottom = 1280.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -392, -824 )
+motion_scale = Vector2( 0.01, 0.01 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+margin_left = -20.0
+margin_right = 816.0
+margin_bottom = 1280.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -392, -824 )
+motion_scale = Vector2( 0.01, 0.01 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3"]
+margin_left = -20.0
+margin_right = 816.0
+margin_bottom = 1280.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -392, -824 )
+motion_scale = Vector2( 0.01, 0.01 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer4"]
+margin_left = -20.0
+margin_right = 816.0
+margin_bottom = 1280.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Coin" parent="Node" instance=ExtResource( 6 )]
+position = Vector2( 222.382, 88.0013 )
+
+[node name="Coin2" parent="Node" instance=ExtResource( 6 )]
+position = Vector2( 256, 24 )
+
+[node name="Coin3" parent="Node" instance=ExtResource( 6 )]
+position = Vector2( 152, 24 )
+
+[node name="Coin4" parent="Node" instance=ExtResource( 6 )]
+position = Vector2( 176, -48 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -10.0
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -20.0
+
+[node name="GUI" parent="." instance=ExtResource( 10 )]
+
+[node name="Powers" type="Node2D" parent="."]
+
+[node name="Magnet" parent="Powers" instance=ExtResource( 9 )]
+position = Vector2( -176, -656 )
+collision_layer = 2
